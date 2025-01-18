@@ -3,12 +3,22 @@ import autoprefixer from "autoprefixer";
 import tailwindcss from "tailwindcss";
 import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
+import legacy from "@vitejs/plugin-legacy";
 
 export default defineConfig({
   css: {
     postcss: {
-      plugins: [tailwindcss, autoprefixer],
+      plugins: [
+        tailwindcss,
+        autoprefixer,
+      ],
     },
   },
-  plugins: [reactRouter(), tsconfigPaths()],
+  plugins: [
+    reactRouter(),
+    tsconfigPaths(),
+    legacy({
+      targets: ["iOS >= 10"],
+    }),
+  ],
 });
